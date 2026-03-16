@@ -1,0 +1,82 @@
+---
+const error = Astro.url.searchParams.get('error')
+---
+
+{error === 'invalid_link' && (
+  <div
+    id="errorAlert"
+    class="fixed top-5 left-0 right-0 mx-auto z-50 w-[calc(100%-32px)] max-w-md"
+    style="animation: fadeDown 0.4s ease both"
+  >
+    <div class="flex items-start gap-3 bg-white border border-red-100 rounded-2xl px-4 py-3.5 shadow-[0_4px_24px_rgba(248,113,113,0.12),0_0_0_1px_rgba(248,113,113,0.08)]">
+
+      <div class="shrink-0 w-7 h-7 rounded-lg bg-red-50 border border-red-100 flex items-center justify-center mt-0.5">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+      </div>
+
+      <div class="flex-1 min-w-0">
+        <p class="text-[13.5px] font-medium text-slate-700 leading-snug">
+          El link expiró o ya fue usado
+        </p>
+        <p class="text-[12.5px] text-slate-400 mt-0.5 leading-relaxed">
+          Registrate de nuevo para recibir un link válido.
+          <a
+            href="/register"
+            class="text-[#6b9177] font-medium border-b border-[rgba(107,145,119,0.35)] hover:border-[#6b9177] transition-colors whitespace-nowrap"
+          >
+            Ir al registro →
+          </a>
+        </p>
+      </div>
+
+      <button
+        id="btnCloseAlert"
+        class="shrink-0 w-6 h-6 rounded-lg flex items-center justify-center text-slate-300 hover:text-slate-500 hover:bg-slate-50 transition-all mt-0.5"
+        aria-label="Cerrar"
+      >
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+
+    </div>
+  </div>
+)}
+
+<style>
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-10px) }
+    to   { opacity: 1; transform: translateY(0) }
+  }
+
+  @keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0) }
+    to   { opacity: 0; transform: translateY(-10px) }
+  }
+
+  #errorAlert.closing {
+    animation: fadeOut 0.3s ease forwards
+  }
+</style>
+
+<script>
+  const alert = document.getElementById('errorAlert')
+  const closeBtn = document.getElementById('btnCloseAlert')
+
+  function closeAlert() {
+    if (!alert) return
+    alert.classList.add('closing')
+    setTimeout(() => alert.remove(), 300)
+  }
+
+  closeBtn?.addEventListener('click', closeAlert)
+
+  if (alert) {
+    setTimeout(closeAlert, 3500)
+  }
+</script>

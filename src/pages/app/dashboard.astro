@@ -1,0 +1,18 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import Sidebar from '../../components/dashboard/Sidebar.astro'
+import Main from '../../components/dashboard/Main.astro'
+import Modal from '../../components/dashboard/Modal.astro'
+---
+
+<Layout title="Veldra — Dashboard">
+  <section class="flex h-screen overflow-hidden">
+    <Sidebar />
+    
+    <!-- Mobile overlay -->
+    <div class="sidebar-overlay hidden fixed inset-0 bg-slate-900/40 z-40" id="sidebarOverlay"></div>
+
+    <Main />
+    <Modal />
+  </section>
+</Layout>

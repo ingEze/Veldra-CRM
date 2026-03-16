@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro'
+import LeftPanel from '../components/auth/login/LeftPanel.astro'
+import RightPanel from '../components/auth/login/RightPanel.astro'
+import Alert from '../components/auth/login/Alert.astro'
+---
+
+<Layout title="Login — Veldra">
+  <div class="flex h-dvh overflow-hidden">
+    <Alert />
+    <LeftPanel />
+    <RightPanel />
+  </div>
+</Layout>

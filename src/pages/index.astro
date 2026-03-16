@@ -1,0 +1,9 @@
+---
+const user = Astro.locals.user
+
+if (user) {
+    return Astro.redirect('/app/dashboard')
+}
+
+return Astro.redirect('/login')
+---

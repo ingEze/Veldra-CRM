@@ -1,0 +1,98 @@
+---
+---
+
+<section class="left-panel w-[42%] min-h-screen relative overflow-hidden flex flex-col justify-between p-12 bg-linear-to-br from-[#1e293b] via-[#263548] to-[#1a3040]">
+
+      <!-- Decorative dots grid -->
+      <div class="absolute inset-0 pointer-events-none" style="background-image:radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);background-size:28px 28px;"></div>
+
+      <!-- Accent blobs -->
+      <div class="absolute -top-16 -right-16 w-72 h-72 rounded-full pointer-events-none" style="background:radial-gradient(ellipse,rgba(107,145,119,0.18) 0%,transparent 65%);"></div>
+      <div class="absolute bottom-20 -left-20 w-80 h-80 rounded-full pointer-events-none" style="background:radial-gradient(ellipse,rgba(100,150,200,0.1) 0%,transparent 65%);"></div>
+
+      <div class="relative z-10">
+
+        <!-- Logo -->
+        <div class="flex items-center gap-3 mb-16">
+          <div class="h-auto w-3/12 rounded-[9px] overflow-hidden shrink-0 flex items-center justify-center">
+            <img 
+              src="/logo.png"
+              alt="Veldra logo"
+              class="w-full h-full object-contain"
+              loading="eager"
+            />
+          </div>
+        </div>
+
+        <div class="mb-10">
+          <p class="text-[13px] font-medium text-[#84a98c] tracking-widest uppercase mb-4">Bienvenido de vuelta</p>
+          <h1 class="font-serif text-[42px] leading-[1.12] text-slate-50 tracking-tight mb-4">
+            Todo sigue<br/>donde lo<br/><em class="text-[#84a98c]">dejaste.</em>
+          </h1>
+          <p class="text-[15px] text-slate-400 leading-relaxed font-light max-w-[320px]">
+            Tus clientes, proyectos y conversaciones te están esperando.
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-3 mb-12">
+          <div class="flex items-center gap-3">
+            <div class="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 bg-[rgba(107,145,119,0.15)] border border-[rgba(107,145,119,0.25)]">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#84a98c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <span class="text-[13.5px] text-slate-300 font-normal">Tu pipeline actualizado en tiempo real</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 bg-[rgba(107,145,119,0.15)] border border-[rgba(107,145,119,0.25)]">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#84a98c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+                <line x1="6" y1="1" x2="6" y2="4"/>
+                <line x1="10" y1="1" x2="10" y2="4"/>
+                <line x1="14" y1="1" x2="14" y2="4"/>
+              </svg>
+            </div>
+            <span class="text-[13.5px] text-slate-300 font-normal">Recordatorios y tareas pendientes listos</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 bg-[rgba(107,145,119,0.15)] border border-[rgba(107,145,119,0.25)]">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#84a98c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
+            <span class="text-[13.5px] text-slate-300 font-normal">Toda tu actividad donde la dejaste</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial — igual que register para consistencia -->
+      <div class="relative z-10 bg-white/8 border border-white/12 rounded-2xl p-5 backdrop-blur-sm">
+        <div class="flex gap-1 mb-3">
+          {Array(5).fill(null).map(() => (
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#eab308" stroke="none">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          ))}
+        </div>
+        <p class="text-[13.5px] text-slate-300 leading-relaxed mb-3 italic">
+          "Entro cada mañana, veo mis clientes, y sé exactamente qué hacer. No necesito más."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-linear-to-br from-[#6b8fb5] to-[#4a6f91] flex items-center justify-center">
+            <span class="text-xs text-white font-semibold">CR</span>
+          </div>
+          <div>
+            <p class="text-[12.5px] text-slate-100 font-medium">Carlos Romero</p>
+            <p class="text-[11.5px] text-slate-500">Desarrollador Web · Freelance</p>
+          </div>
+        </div>
+      </div>
+</section>
+
+<style>
+    @media (max-width: 1024px) {
+    .left-panel { display: none }
+  }
+</style>

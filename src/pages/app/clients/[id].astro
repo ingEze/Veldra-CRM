@@ -1,0 +1,360 @@
+---
+import Layout from '../../../layouts/Layout.astro' 
+import Modal from '../../../components/dashboard/Modal.astro' 
+---
+
+<Layout title="Client Details">
+  <div class="min-h-screen bg-[#fdfcf8]">
+    
+    <div class="bg-[#fdfcf8] border-b border-[#eef2f7] sticky top-0 z-10">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <button id="btnBack" class="flex items-center gap-2 text-[13px] font-medium text-slate-500 hover:text-slate-900 transition-colors group">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:-translate-x-1 transition-transform">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+          Back to clients
+        </button>
+
+        <div class="flex items-center gap-2">
+          <button id="btnEditClient" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[13px] font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+            </svg>
+            Edit
+          </button>
+
+          <button id="btnDeleteClient" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[13px] font-medium text-red-400 hover:text-red-600 hover:bg-red-50 transition-all">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"/>
+              <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+              <path d="M10 11v6M14 11v6"/>
+              <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+            </svg>
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="loadingState" class="max-w-6xl mx-auto px-6 py-12">
+      <div class="animate-pulse">
+        <div class="h-16 w-16 bg-slate-200 rounded-2xl mb-4"></div>
+        <div class="h-8 bg-slate-200 rounded w-1/3 mb-2"></div>
+        <div class="h-4 bg-slate-200 rounded w-1/4 mb-10"></div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="lg:col-span-2 space-y-6">
+            <div class="h-40 bg-slate-200 rounded-2xl"></div>
+            <div class="h-64 bg-slate-200 rounded-2xl"></div>
+          </div>
+          <div class="h-96 bg-slate-200 rounded-2xl"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="mainContent" class="hidden max-w-6xl mx-auto px-6 py-8">
+      
+      <div class="mb-8 flex flex-col sm:flex-row sm:items-start justify-between gap-6">
+        <div class="flex items-center gap-5">
+          <div id="clientAvatar" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-linear-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-md shrink-0">
+            <span id="clientInitials" class="text-[22px] sm:text-[26px] text-white font-bold tracking-wide"></span>
+          </div>
+          <div>
+            <h1 id="clientName" class="font-serif text-[28px] sm:text-[32px] text-slate-900 tracking-tight leading-none mb-2"></h1>
+            <p id="clientCompany" class="text-[14px] sm:text-[15px] text-slate-500 font-medium"></p>
+          </div>
+        </div>
+        <div id="statusBadge" class="self-start px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider shadow-sm border"></div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+        <div class="bg-white rounded-xl p-4 sm:p-5 border border-slate-200 shadow-sm">
+          <p class="text-[11px] text-slate-400 uppercase tracking-wider font-bold mb-1.5">Email</p>
+          <p id="statEmail" class="text-[13px] text-slate-800 font-medium truncate">—</p>
+        </div>
+        <div class="bg-white rounded-xl p-4 sm:p-5 border border-slate-200 shadow-sm">
+          <p class="text-[11px] text-slate-400 uppercase tracking-wider font-bold mb-1.5">Phone</p>
+          <p id="statPhone" class="text-[13px] text-slate-800 font-medium truncate">—</p>
+        </div>
+        <div class="bg-white rounded-xl p-4 sm:p-5 border border-slate-200 shadow-sm">
+          <p class="text-[11px] text-slate-400 uppercase tracking-wider font-bold mb-1.5">Country</p>
+          <p id="statCountry" class="text-[13px] text-slate-800 font-medium truncate">—</p>
+        </div>
+        <div class="rounded-xl p-4 sm:p-5 border border-slate-200 shadow-sm bg-slate-50/50">
+          <p class="text-[11px] text-slate-400 uppercase tracking-wider font-bold mb-1.5">Est. Revenue</p>
+          <p id="statRevenue" class="text-[14px] text-slate-900 font-bold">—</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-start">
+
+        <div class="lg:col-span-2 space-y-6 sm:space-y-8">
+          
+          <div class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200 shadow-sm">
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="font-serif text-[20px] text-slate-800">Notes</h2>
+            </div>
+            <div id="notesContent" class="text-[14px] text-slate-600 leading-relaxed whitespace-pre-wrap">No notes yet</div>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200 shadow-sm">
+            <div class="flex items-center justify-between mb-5">
+              <h2 class="font-serif text-[20px] text-slate-800">Projects</h2>
+              <a id="btnAddProject" href="#" class="flex items-center gap-1.5 text-[13px] font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 px-2.5 py-1.5 rounded-lg transition-all">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+                Add
+              </a>
+            </div>
+            <div id="projectsList" class="space-y-3">
+              <div id="projectsEmpty" class="flex flex-col items-center justify-center py-8 text-center">
+                <div class="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center mb-3">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                  </svg>
+                </div>
+                <p class="text-[13.5px] font-medium text-slate-500 mb-0.5">No projects yet</p>
+                <p class="text-[12px] text-slate-400">Projects linked to this client will appear here</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200 shadow-sm">
+            <div class="flex items-center justify-between mb-5">
+              <h2 class="font-serif text-[20px] text-slate-800">Meetings</h2>
+              <a id="btnAddMeeting" href="#" class="flex items-center gap-1.5 text-[13px] font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 px-2.5 py-1.5 rounded-lg transition-all">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+                Schedule
+              </a>
+            </div>
+            <div id="meetingsList" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div id="meetingsEmpty" class="col-span-2 flex flex-col items-center justify-center py-8 text-center">
+                <div class="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center mb-3">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                  </svg>
+                </div>
+                <p class="text-[13.5px] font-medium text-slate-500 mb-0.5">No meetings scheduled</p>
+                <p class="text-[12px] text-slate-400">Schedule your first meeting with this client</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="space-y-5 sticky top-24">
+
+          <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+            <h3 class="font-serif text-[18px] text-slate-800 mb-4">Quick Contact</h3>
+            <div class="space-y-2.5">
+
+              <a id="btnSendEmail" href="#" class="flex items-center gap-3.5 w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-blue-50 hover:border-blue-200 transition-all group">
+                <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center shrink-0 group-hover:bg-blue-200 transition-colors">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                </div>
+                <span class="flex-1 text-[13.5px] text-slate-700 font-medium text-left">Send email</span>
+                <svg class="w-4 h-4 text-slate-300 group-hover:text-blue-400 group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+              </a>
+
+              <a id="btnCall" href="#" class="flex items-center gap-3.5 w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-200 transition-all group">
+                <div class="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center shrink-0 group-hover:bg-emerald-200 transition-colors">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                  </svg>
+                </div>
+                <span class="flex-1 text-[13.5px] text-slate-700 font-medium text-left">Make a call</span>
+                <svg class="w-4 h-4 text-slate-300 group-hover:text-emerald-400 group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+              </a>
+
+              <a id="btnWhatsapp" href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3.5 w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-green-50 hover:border-green-200 transition-all group">
+                <div class="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center shrink-0 group-hover:bg-green-200 transition-colors">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="#16a34a">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                  </svg>
+                </div>
+                <span class="flex-1 text-[13.5px] text-slate-700 font-medium text-left">Send message</span>
+                <svg class="w-4 h-4 text-slate-300 group-hover:text-green-400 group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+              </a>
+
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+            <h3 class="font-serif text-[18px] text-slate-800 mb-5">Recent Activity</h3>
+            <div class="space-y-5 flex flex-col">
+              <div class="gap-3.5 relative">
+                  <div class="mb-2">
+                    <div class="flex flex-row gap-1">
+                      <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 mt-1.5 shrink-0 z-10 outline-4 outline-white"></div>
+                      <p class="text-[13.5px] font-medium text-slate-800">Client added to system</p>
+                    </div>
+                    <p class="text-[11.5px] text-slate-400 mt-0.5 font-medium" id="createdAt">Just now</p>
+                  </div>
+
+                  <div>
+                      <div class="flex flex-row gap-1">
+                        <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 mt-1.5 shrink-0 z-10 outline-4 outline-white"></div>
+                        <p class="text-[13.5px] font-medium text-slate-800">Last updated</p>
+                      </div>
+                    <p class="text-[11.5px] text-slate-400 mt-0.5 font-medium" id="updatedAt">Just now</p>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <Modal />
+</Layout>
+
+<script>
+  import { fetchAPI } from '../../../lib/fetchApi'
+  import { showAlert } from '../../../lib/showAlert'
+  import { clientManager } from '../../../scripts/clientModal'
+
+  const pathParts = window.location.pathname.split('/')
+  const id = pathParts[pathParts.length - 1]
+
+  let currentClient: any = null
+
+  function getInitials(name: string) {
+    if (!name) return '?'
+    return name.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase()
+  }
+
+  function formatRevenue(amount: any): string {
+    const value = parseFloat(amount)
+    if (isNaN(value) || value === 0) return '—'
+    return new Intl.NumberFormat('es-AR', {
+      style: 'currency', currency: 'USD', minimumFractionDigits: 0
+    }).format(value)
+  }
+
+  function formatDate(dateString: string) {
+    if (!dateString) return 'Unknown'
+    const date = new Date(dateString)
+    const diffDays = Math.round((date.getTime() - Date.now()) / (1000 * 60 * 60 * 24))
+    return new Intl.RelativeTimeFormat('en', { numeric: 'auto' }).format(diffDays, 'day')
+  }
+
+  async function loadClient() {
+    const loadingState = document.getElementById('loadingState')
+    const mainContent = document.getElementById('mainContent')
+
+    try {
+      const res = await fetchAPI(`/api/clients/${id}`, 'GET')
+      if (!res.ok) throw new Error('Client not found')
+
+      const data = await res.json()
+      currentClient = data.client
+
+      const fullNameOrEnterprise = currentClient.full_name || currentClient.enterprise || 'Unknown'
+
+      document.getElementById('clientName')!.textContent = fullNameOrEnterprise
+      document.getElementById('clientCompany')!.textContent = currentClient.enterprise || 'Individual Client'
+      document.getElementById('clientInitials')!.textContent = getInitials(fullNameOrEnterprise)
+      document.getElementById('statEmail')!.textContent = currentClient.email || '—'
+      document.getElementById('statPhone')!.textContent = currentClient.phone || '—'
+      document.getElementById('statCountry')!.textContent = currentClient.country || '—'
+      document.getElementById('statRevenue')!.textContent = formatRevenue(currentClient.estimated_revenue)
+      document.getElementById('notesContent')!.textContent = currentClient.notes || 'No notes yet'
+      document.getElementById('createdAt')!.textContent = formatDate(currentClient.created_at)
+      document.getElementById('updatedAt')!.textContent = formatDate(currentClient.updated_at)
+
+      const email = currentClient.email
+      const phone = currentClient.phone
+
+      const btnEmail = document.getElementById('btnSendEmail') as HTMLAnchorElement
+      const btnCall = document.getElementById('btnCall') as HTMLAnchorElement
+      const btnWA = document.getElementById('btnWhatsapp') as HTMLAnchorElement
+
+      if (email) {
+        btnEmail.href = `mailto:${email}`
+      } else {
+        btnEmail.classList.add('opacity-40', 'pointer-events-none')
+      }
+
+      if (phone) {
+        const cleanPhone = phone.replace(/\s/g, '')
+        btnCall.href = `tel:${cleanPhone}`
+        btnWA.href = `https://wa.me/${cleanPhone.replace('+', '')}`
+      } else {
+        btnCall.classList.add('opacity-40', 'pointer-events-none')
+        btnWA.classList.add('opacity-40', 'pointer-events-none')
+      }
+
+      const btnAddProject = document.getElementById('btnAddProject') as HTMLAnchorElement
+      const btnAddMeeting = document.getElementById('btnAddMeeting') as HTMLAnchorElement
+      if (btnAddProject) btnAddProject.href = `/app/projects/new?client=${id}`
+      if (btnAddMeeting) btnAddMeeting.href = `/app/meetings/new?client=${id}`
+
+      const statusBadge = document.getElementById('statusBadge')!
+      const statusMap: any = {
+        'new_lead':        { label: 'New Lead',        bg: '#eff6ff', text: '#2563eb', border: '#bfdbfe' },
+        'proposal_sent':   { label: 'Proposal Sent',   bg: '#faf5ff', text: '#7c3aed', border: '#e9d5ff' },
+        'approved':        { label: 'Approved',        bg: '#f0fdf4', text: '#166534', border: '#bbf7d0' },
+        'in_progress':     { label: 'In Progress',     bg: '#fffbeb', text: '#92400e', border: '#fef3c7' },
+        'delivered':       { label: 'Delivered',       bg: '#f0fdfa', text: '#065f46', border: '#99f6e4' },
+        'awaiting_payment':{ label: 'Awaiting Payment',bg: '#fff7ed', text: '#c2410c', border: '#fed7aa' },
+        'paid':            { label: 'Paid',            bg: '#dcfce7', text: '#15803d', border: '#bbf7d0' },
+        'rejected':        { label: 'Rejected',        bg: '#fef2f2', text: '#b91c1c', border: '#fecaca' },
+        'on_hold':         { label: 'On Hold',         bg: '#f8fafc', text: '#475569', border: '#e2e8f0' },
+      }
+      
+      const config = statusMap[currentClient.status] || statusMap['new_lead']
+      statusBadge.textContent = config.label
+      statusBadge.style.backgroundColor = config.bg
+      statusBadge.style.color = config.text
+      statusBadge.style.borderColor = config.border
+
+      loadingState?.classList.add('hidden')
+      mainContent?.classList.remove('hidden')
+
+    } catch (error) {
+      console.error(error)
+      showAlert({ message: 'ERROR', description: 'Could not load client', type: 'ERROR' })
+      window.location.href = '/app/dashboard'
+    }
+  }
+  
+  async function deleteClient() {
+    try {
+      const res = await fetchAPI(`/api/clients/${id}`, 'DELETE')
+
+      if (!res.ok) {
+        const errMsg = await res.json()
+        console.error(errMsg)
+        return
+      }
+
+      window.location.href = '/app/dashboard?client_deleted=true'
+      return
+    } catch (err) {
+      console.error('err', err) 
+      console.error('err msg', (err as Error).message)
+    }
+  }
+
+  async function updateClient() {
+    if (currentClient) return clientManager.open('UPDATE', currentClient)
+  }
+
+  document.getElementById('btnBack')?.addEventListener('click', () => window.location.href = '/app/dashboard')
+  document.getElementById('btnEditClient')?.addEventListener('click', async() => updateClient() )
+  document.getElementById('btnDeleteClient')?.addEventListener('click', async() => deleteClient())
+
+  loadClient()
+</script>

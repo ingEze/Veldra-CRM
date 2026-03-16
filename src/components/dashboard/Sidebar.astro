@@ -1,0 +1,230 @@
+---
+const email = Astro.locals.user?.email
+const initials = email?.slice(0, 2).toUpperCase()
+---
+
+<aside id="sidebar" class="w-55 shrink-0 flex flex-col h-full bg-white border-r border-[#eef2f7]">
+    <div class="border-b border-[#eef2f7] flex justify-center items-center">
+    <div class="flex items-center gap-3 mx-1 my-[19.5px]">
+        <div class="h-auto w-6/12 rounded-[9px] overflow-hidden shrink-0 flex items-center justify-center bg-transparent ml-4">
+        <img 
+            src="/logo.png"
+            alt="Veldra logo"
+            class="w-full h-full object-contain brightness-0"
+            loading="eager"
+        />
+        </div>
+    </div>
+    </div>
+
+    <nav class="flex-1 px-3 py-4 flex flex-col gap-0.5 overflow-y-auto">
+    <p class="text-[10.5px] font-semibold text-slate-400 uppercase tracking-widest px-3 mb-2">Workspace</p>
+
+    <a class="nav-item active" data-section="clients">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        Clients
+    </a>
+
+    <a class="nav-item" data-section="projects">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2"/>
+        <path d="M8 21h8m-4-4v4"/>
+        </svg>
+        Projects
+    </a>
+
+    <a class="nav-item" data-section="meetings">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2"/>
+        <path d="M16 2v4M8 2v4M3 10h18"/>
+        </svg>
+        Meetings
+    </a>
+
+    <a class="nav-item" data-section="tasks">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 11 12 14 22 4"/>
+        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+        </svg>
+        Tasks
+    </a>
+
+    <div class="my-3 border-t border-[#eef2f7]"></div>
+    <p class="text-[10.5px] font-semibold text-slate-400 uppercase tracking-widest px-3 mb-2">Account</p>
+
+    <a class="nav-item" data-section="settings">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+        Settings
+    </a>
+    </nav>
+
+    <!-- User -->
+    <div class="px-4 py-4 border-t border-[#eef2f7]">
+    <div class="flex items-center gap-2.5">
+        <div class="w-7 h-7 rounded-full bg-linear-to-br from-[#6b9177] to-[#537860] flex items-center justify-center shrink-0">
+        <span class="text-[11px] text-white font-semibold">{initials}</span>
+        </div>
+        <div class="flex-1 min-w-0">
+        <p class="text-[11px] text-slate-400 truncate">{email}</p>
+        </div>
+        <button id="logout" class="text-slate-400 hover:text-slate-600 transition-colors p-0.5" title="Cerrar sesión">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        </button>
+    </div>
+    </div>
+</aside>
+
+<style>
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 400;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    text-decoration: none;
+  }
+  .nav-item:hover {
+    background: rgba(107, 145, 119, 0.08);
+    color: #334155;
+  }
+  .nav-item.active {
+    background: #1e293b;
+    color: #f8fafc;
+    font-weight: 500;
+  }
+  .nav-item.active svg {
+    stroke: #84a98c;
+  }
+
+  @media (max-width: 768px) {
+    #sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      z-index: 50;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+    #sidebar.open {
+      transform: translateX(0);
+    }
+    .sidebar-overlay.open {
+      display: block !important;
+    }
+  }
+</style>
+
+<script>
+import { fetchAPI } from "../../lib/fetchApi"
+
+  declare global {
+    interface Window {
+      showSection: (section: SectionType) => void
+      renderClients: () => void
+      toggleMobileSidebar: () => void
+      closeMobileSidebar: () => void
+      refreshClients: (b?: boolean) => Promise<void>
+    }
+  }
+
+  document.getElementById('logout')?.addEventListener('click', async() => {
+    const res = await fetchAPI('/api/auth/logout', 'POST')
+    if(!res.ok) {
+      const errorData = await res.json()
+      console.error(errorData)
+    }
+
+    window.location.href = '/login'
+    return
+  })
+
+  const sectionMeta = {
+    clients:  { title: 'Clients',  sub: 'Manage your client relationships' },
+    projects: { title: 'Projects', sub: 'Track your ongoing work' },
+    meetings: { title: 'Meetings', sub: 'Stay on top of your schedule' },
+    tasks:    { title: 'Tasks',    sub: 'Keep your to-dos organized' },
+    settings: { title: 'Settings', sub: 'Configure your workspace' }
+  }
+
+  type SectionType = keyof typeof sectionMeta
+
+  function showSection(section: SectionType) {
+    const pageTitle = document.getElementById('pageTitle')
+    const pageSub = document.getElementById('pageSubtitle')
+    const btnAdd = document.getElementById('btnAddClient')
+    const emptyState = document.getElementById('emptyState')
+    const clientsList = document.getElementById('clientsList')
+    const comingSoon = document.getElementById('comingSoon')
+    
+    const meta = sectionMeta[section]
+    if (pageTitle) pageTitle.textContent = meta.title
+    if (pageSub) pageSub.textContent = meta.sub
+    if (btnAdd) btnAdd.style.display = section === 'clients' ? 'flex' : 'none'
+
+    if (section === 'clients') {
+      comingSoon?.classList.add('hidden')
+      comingSoon?.classList.remove('flex')
+      if (window.renderClients) {
+        window.renderClients()
+      } else if (window.refreshClients) {
+        window.refreshClients(true)
+      }
+    } else {
+      emptyState?.classList.add('hidden')
+      clientsList?.classList.add('hidden')
+      comingSoon?.classList.remove('hidden')
+      comingSoon?.classList.add('flex')
+    }
+  }
+
+  window.showSection = showSection
+
+  const navItems = document.querySelectorAll('.nav-item')
+  navItems.forEach((item) => {
+    item.addEventListener('click', () => {
+      navItems.forEach((n) => n.classList.remove('active'))
+      item.classList.add('active')
+      const section = (item as HTMLElement).dataset.section
+      if (section) showSection(section as SectionType)
+      closeMobileSidebar()
+    })
+  })
+
+  function toggleMobileSidebar() {
+    const sidebar = document.getElementById('sidebar')
+    const overlay = document.getElementById('sidebarOverlay')
+    sidebar?.classList.toggle('open')
+    overlay?.classList.toggle('open')
+  }
+  function closeMobileSidebar() {
+    const sidebar = document.getElementById('sidebar')
+    const overlay = document.getElementById('sidebarOverlay')
+    sidebar?.classList.remove('open')
+    overlay?.classList.remove('open')
+  }
+
+  window.toggleMobileSidebar = toggleMobileSidebar
+  window.closeMobileSidebar = closeMobileSidebar
+
+  showSection('clients')
+  const firstNav = document.querySelector('.nav-item[data-section="clients"]')
+  if (firstNav) firstNav.classList.add('active')
+</script>
