@@ -1,206 +1,351 @@
 ---
+
 ---
 
-<section class="flex-1 flex items-center justify-center p-6 lg:p-12 relative bg-[#faf7f0]">
-      <div class="absolute -top-20 -right-16 w-75 h-75 rounded-full pointer-events-none" style="background:radial-linear(ellipse, rgba(107,145,119,0.08) 0%, transparent 70%);"></div>
-      <div class="absolute -bottom-24 -left-20 w-87.5 h-87.5 rounded-full pointer-events-none" style="background:radial-linear(ellipse, rgba(130,160,200,0.07) 0%, transparent 70%);"></div>
+<section
+  class="flex-1 flex items-center justify-center p-6 lg:p-12 relative bg-[#faf7f0]"
+>
+  <div
+    class="absolute -top-20 -right-16 w-75 h-75 rounded-full pointer-events-none"
+    style="background:radial-linear(ellipse, rgba(107,145,119,0.08) 0%, transparent 70%);"
+  >
+  </div>
+  <div
+    class="absolute -bottom-24 -left-20 w-87.5 h-87.5 rounded-full pointer-events-none"
+    style="background:radial-linear(ellipse, rgba(130,160,200,0.07) 0%, transparent 70%);"
+  >
+  </div>
 
-      <div class="w-full max-w-105 relative z-10">
+  <div class="w-full max-w-105 relative z-10">
+    <div
+      class="bg-white rounded-2xl p-8 lg:p-9 shadow-[0_0_0_1px_rgba(180,195,210,0.3),0_4px_6px_-1px_rgba(100,120,140,0.06),0_20px_50px_-10px_rgba(80,100,130,0.12)]"
+    >
+      <div
+        class="h-auto w-3/12 rounded-[9px] overflow-hidden shrink-0 flex items-center justify-center lg:hidden"
+      >
+        <img
+          src="/logo.png"
+          alt="Veldra logo"
+          class="w-full h-full object-contain brightness-0"
+          loading="eager"
+        />
+      </div>
 
-        <div class="bg-white rounded-2xl p-8 lg:p-9 shadow-[0_0_0_1px_rgba(180,195,210,0.3),0_4px_6px_-1px_rgba(100,120,140,0.06),0_20px_50px_-10px_rgba(80,100,130,0.12)]">
+      <div class="mb-7 anim-1">
+        <h2 class="font-serif text-[26px] text-slate-800 tracking-tight mb-1.5">
+          Crea tu cuenta
+        </h2>
+        <p class="text-[14px] text-slate-400">
+          ¿Ya tienes una cuenta?
+          <a
+            href="/login"
+            class="text-[#6b9177] font-medium border-b border-[rgba(107,145,119,0.4)] pb-px hover:border-[#6b9177] transition-colors"
+          >
+            Inicia sesión
+          </a>
+        </p>
+      </div>
 
-          <div class="h-auto w-3/12 rounded-[9px] overflow-hidden shrink-0 flex items-center justify-center lg:hidden ">
-            <img 
-              src="/logo.png"
-              alt="Veldra logo"
-              class="w-full h-full object-contain brightness-0"
-              loading="eager"
-            />
-          </div>
+      <div class="anim-2">
+        <button
+          id="btnGoogle"
+          type="button"
+          class="w-full flex items-center justify-center gap-2.5 bg-[#fdfcf8] text-slate-700 border border-[#dde6f0] rounded-[10px] px-5 py-3 text-[14.5px] font-medium cursor-pointer transition-all duration-200 hover:bg-white hover:border-[#c8d8e8] hover:-translate-y-px hover:shadow-[0_4px_14px_rgba(100,120,140,0.1)] active:translate-y-0"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+              fill="#4285F4"></path>
+            <path
+              d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+              fill="#34A853"></path>
+            <path
+              d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+              fill="#FBBC05"></path>
+            <path
+              d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+              fill="#EA4335"></path>
+          </svg>
+          Continuar con Google
+        </button>
+      </div>
 
-          <div class="mb-7 anim-1">
-            <h2 class="font-serif text-[26px] text-slate-800 tracking-tight mb-1.5">Crea tu cuenta</h2>
-            <p class="text-[14px] text-slate-400">
-              ¿Ya tienes una cuenta?
-              <a href="/login" class="text-[#6b9177] font-medium border-b border-[rgba(107,145,119,0.4)] pb-px hover:border-[#6b9177] transition-colors">
-                Inicia sesión
-              </a>
-            </p>
-          </div>
-
-          <div class="anim-2">
-            <button
-              id="btnGoogle"
-              type="button"
-              class="w-full flex items-center justify-center gap-2.5 bg-[#fdfcf8] text-slate-700 border border-[#dde6f0] rounded-[10px] px-5 py-3 text-[14.5px] font-medium cursor-pointer transition-all duration-200 hover:bg-white hover:border-[#c8d8e8] hover:-translate-y-px hover:shadow-[0_4px_14px_rgba(100,120,140,0.1)] active:translate-y-0"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-              </svg>
-              Continuar con Google
-            </button>
-          </div>
-
-          <div class="flex items-center gap-3 my-5 anim-3">
-            <div class="flex-1 h-px bg-linear-to-r from-transparent via-[#dde6f0] to-transparent"></div>
-            <span class="text-[12.5px] text-slate-400 font-medium whitespace-nowrap">o regístrate con email</span>
-            <div class="flex-1 h-px bg-linear-to-r from-transparent via-[#dde6f0] to-transparent"></div>
-          </div>
-
-          <form id="registerForm" novalidate class="flex flex-col gap-4">
-
-            <div class="anim-3">
-              <label for="email" class="block text-[13px] font-medium text-slate-600 mb-1.5">
-                Correo electrónico
-              </label>
-              <div class="relative">
-                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                    <polyline points="22,6 12,13 2,6"/>
-                  </svg>
-                </span>
-                <input
-                  id="email"
-                  type="email"
-                  autocomplete="email"
-                  placeholder="tu@correo.com"
-                  class="input-field pl-10!"
-                />
-              </div>
-              <p id="emailError" class="hidden text-[12px] text-red-400 mt-1.5"></p>
-            </div>
-
-            <div class="anim-4">
-              <label for="password" class="block text-[13px] font-medium text-slate-600 mb-1.5">
-                Contraseña
-              </label>
-              <div class="relative">
-                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                  </svg>
-                </span>
-                <input
-                  id="password"
-                  type="password"
-                  autocomplete="new-password"
-                  placeholder="Mínimo 8 caracteres"
-                  class="input-field pl-10! pr-11!"
-                />
-                <button
-                  id="togglePassword"
-                  type="button"
-                  aria-label="Mostrar contraseña"
-                  class="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 text-slate-400 hover:text-slate-600 transition-colors"
-                >
-                  <svg id="eyeIcon1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                  </svg>
-                </button>
-              </div>
-              <div id="strengthBox" class="hidden mt-2">
-                <div class="flex gap-1 mb-1">
-                  <div id="s1" class="strength-bar w-1/4 bg-slate-200"></div>
-                  <div id="s2" class="strength-bar w-1/4 bg-slate-200"></div>
-                  <div id="s3" class="strength-bar w-1/4 bg-slate-200"></div>
-                  <div id="s4" class="strength-bar w-1/4 bg-slate-200"></div>
-                </div>
-                <p id="strengthLabel" class="text-[11.5px] text-slate-400"></p>
-              </div>
-            </div>
-
-            <div class="anim-5">
-              <label for="confirmPassword" class="block text-[13px] font-medium text-slate-600 mb-1.5">
-                Confirmar contraseña
-              </label>
-              <div class="relative">
-                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  </svg>
-                </span>
-                <input
-                  id="confirmPassword"
-                  type="password"
-                  autocomplete="new-password"
-                  placeholder="Repite tu contraseña"
-                  class="input-field pr-11! pl-10!"
-                />
-                <button
-                  id="toggleConfirmPassword"
-                  type="button"
-                  aria-label="Mostrar confirmación de contraseña"
-                  class="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 text-slate-400 hover:text-slate-600 transition-colors"
-                >
-                  <svg id="eyeIcon2" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                  </svg>
-                </button>
-              </div>
-              <div id="matchIndicator" class="flex items-center gap-1.5 mt-1 opacity-0 transition-opacity duration-300">
-                <div id="matchDot" class="w-1.5 h-1.5 rounded-full bg-slate-200 transition-colors duration-300"></div>
-                <span id="matchText" class="text-[12.5px] text-slate-400 transition-colors duration-300"></span>
-              </div>
-            </div>
-
-            <div class="anim-6 flex items-start gap-2.5">
-              <div class="relative shrink-0 mt-px">
-                <input
-                  type="checkbox"
-                  id="terms"
-                  class="peer w-4 h-4 appearance-none border border-[#c8d8e8] rounded cursor-pointer transition-all duration-200 checked:bg-slate-800 checked:border-slate-800"
-                />
-                <svg class="absolute top-0.75 left-0.75 pointer-events-none hidden peer-checked:block" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
-              </div>
-              <label for="terms" class="text-[13px] text-slate-500 leading-relaxed cursor-pointer">
-                Acepto los
-                <a href="/terms" class="text-[#6b9177] font-medium border-b border-[rgba(107,145,119,0.35)] hover:border-[#6b9177] transition-colors">Términos de servicio</a>
-                y la
-                <a href="/privacy" class="text-[#6b9177] font-medium border-b border-[rgba(107,145,119,0.35)] hover:border-[#6b9177] transition-colors">Política de privacidad</a>
-                <strong class="text-[13px] text-red-600">*</strong>
-              </label>
-            </div>
-
-            <!-- Newsletter (opcional) -->
-            <div class="anim-6 flex items-start gap-2.5">
-              <div class="relative shrink-0 mt-px">
-                <input
-                  type="checkbox"
-                  id="news"
-                  class="peer w-4 h-4 appearance-none border border-[#c8d8e8] rounded cursor-pointer transition-all duration-200 checked:bg-slate-800 checked:border-slate-800"
-                />
-                <svg class="absolute top-0.75 left-0.75 pointer-events-none hidden peer-checked:block" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
-              </div>
-              <label for="news" class="text-[13px] text-slate-500 leading-relaxed cursor-pointer">
-                Acepto recibir novedades y actualizaciones
-              </label>
-            </div>
-
-            <!-- Submit -->
-            <div class="anim-7 mt-1">
-              <button
-                id="btnSubmit"
-                type="submit"
-                class="w-full bg-slate-800 text-[#fdfcf8] rounded-[10px] px-5 py-3.5 text-[14.5px] font-semibold tracking-wide cursor-pointer transition-all duration-200 hover:bg-slate-900 hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(30,41,59,0.25)] active:translate-y-0"
-              >
-                Crear cuenta gratis
-              </button>
-            </div>
-
-          </form>
+      <div class="flex items-center gap-3 my-5 anim-3">
+        <div
+          class="flex-1 h-px bg-linear-to-r from-transparent via-[#dde6f0] to-transparent"
+        >
+        </div>
+        <span class="text-[12.5px] text-slate-400 font-medium whitespace-nowrap"
+          >o regístrate con email</span
+        >
+        <div
+          class="flex-1 h-px bg-linear-to-r from-transparent via-[#dde6f0] to-transparent"
+        >
         </div>
       </div>
+
+      <form id="registerForm" novalidate class="flex flex-col gap-4">
+        <div class="anim-3">
+          <label
+            for="email"
+            class="block text-[13px] font-medium text-slate-600 mb-1.5"
+          >
+            Correo electrónico
+          </label>
+          <div class="relative">
+            <span
+              class="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#94a3b8"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                ></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </span>
+            <input
+              id="email"
+              type="email"
+              autocomplete="email"
+              placeholder="tu@correo.com"
+              class="input-field pl-10!"
+            />
+          </div>
+          <p id="emailError" class="hidden text-[12px] text-red-400 mt-1.5"></p>
+        </div>
+
+        <div class="anim-4">
+          <label
+            for="password"
+            class="block text-[13px] font-medium text-slate-600 mb-1.5"
+          >
+            Contraseña
+          </label>
+          <div class="relative">
+            <span
+              class="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#94a3b8"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </span>
+            <input
+              id="password"
+              type="password"
+              autocomplete="new-password"
+              placeholder="Mínimo 8 caracteres"
+              class="input-field pl-10! pr-11!"
+            />
+            <button
+              id="togglePassword"
+              type="button"
+              aria-label="Mostrar contraseña"
+              class="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 text-slate-400 hover:text-slate-600 transition-colors"
+            >
+              <svg
+                id="eyeIcon1"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+          <div id="strengthBox" class="hidden mt-2">
+            <div class="flex gap-1 mb-1">
+              <div id="s1" class="strength-bar w-1/4 bg-slate-200"></div>
+              <div id="s2" class="strength-bar w-1/4 bg-slate-200"></div>
+              <div id="s3" class="strength-bar w-1/4 bg-slate-200"></div>
+              <div id="s4" class="strength-bar w-1/4 bg-slate-200"></div>
+            </div>
+            <p id="strengthLabel" class="text-[11.5px] text-slate-400"></p>
+          </div>
+        </div>
+
+        <div class="anim-5">
+          <label
+            for="confirmPassword"
+            class="block text-[13px] font-medium text-slate-600 mb-1.5"
+          >
+            Confirmar contraseña
+          </label>
+          <div class="relative">
+            <span
+              class="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#94a3b8"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </span>
+            <input
+              id="confirmPassword"
+              type="password"
+              autocomplete="new-password"
+              placeholder="Repite tu contraseña"
+              class="input-field pr-11! pl-10!"
+            />
+            <button
+              id="toggleConfirmPassword"
+              type="button"
+              aria-label="Mostrar confirmación de contraseña"
+              class="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 text-slate-400 hover:text-slate-600 transition-colors"
+            >
+              <svg
+                id="eyeIcon2"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+          <div
+            id="matchIndicator"
+            class="flex items-center gap-1.5 mt-1 opacity-0 transition-opacity duration-300"
+          >
+            <div
+              id="matchDot"
+              class="w-1.5 h-1.5 rounded-full bg-slate-200 transition-colors duration-300"
+            >
+            </div>
+            <span
+              id="matchText"
+              class="text-[12.5px] text-slate-400 transition-colors duration-300"
+            ></span>
+          </div>
+        </div>
+
+        <div class="anim-6 flex items-start gap-2.5">
+          <div class="relative shrink-0 mt-px">
+            <input
+              type="checkbox"
+              id="terms"
+              class="peer w-4 h-4 appearance-none border border-[#c8d8e8] rounded cursor-pointer transition-all duration-200 checked:bg-slate-800 checked:border-slate-800"
+            />
+            <svg
+              class="absolute top-0.75 left-0.75 pointer-events-none hidden peer-checked:block"
+              width="10"
+              height="10"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <label
+            for="terms"
+            class="text-[13px] text-slate-500 leading-relaxed cursor-pointer"
+          >
+            Acepto los
+            <a
+              href="/terms"
+              class="text-[#6b9177] font-medium border-b border-[rgba(107,145,119,0.35)] hover:border-[#6b9177] transition-colors"
+              >Términos de servicio</a
+            >
+            y la
+            <a
+              href="/privacy"
+              class="text-[#6b9177] font-medium border-b border-[rgba(107,145,119,0.35)] hover:border-[#6b9177] transition-colors"
+              >Política de privacidad</a
+            >
+            <strong class="text-[13px] text-red-600">*</strong>
+          </label>
+        </div>
+
+        <!-- Newsletter (opcional) -->
+        <div class="anim-6 flex items-start gap-2.5">
+          <div class="relative shrink-0 mt-px">
+            <input
+              type="checkbox"
+              id="news"
+              class="peer w-4 h-4 appearance-none border border-[#c8d8e8] rounded cursor-pointer transition-all duration-200 checked:bg-slate-800 checked:border-slate-800"
+            />
+            <svg
+              class="absolute top-0.75 left-0.75 pointer-events-none hidden peer-checked:block"
+              width="10"
+              height="10"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <label
+            for="news"
+            class="text-[13px] text-slate-500 leading-relaxed cursor-pointer"
+          >
+            Acepto recibir novedades y actualizaciones
+          </label>
+        </div>
+
+        <!-- Submit -->
+        <div class="anim-7 mt-1">
+          <button
+            id="btnSubmit"
+            type="submit"
+            class="w-full bg-slate-800 text-[#fdfcf8] rounded-[10px] px-5 py-3.5 text-[14.5px] font-semibold tracking-wide cursor-pointer transition-all duration-200 hover:bg-slate-900 hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(30,41,59,0.25)] active:translate-y-0"
+          >
+            Crear cuenta gratis
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </section>
 
 <style>
@@ -211,26 +356,48 @@
   }
 
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-  .anim-1 { animation: fadeUp 0.55s ease 0.05s both; }
-  .anim-2 { animation: fadeUp 0.55s ease 0.12s both; }
-  .anim-3 { animation: fadeUp 0.55s ease 0.19s both; }
-  .anim-4 { animation: fadeUp 0.55s ease 0.26s both; }
-  .anim-5 { animation: fadeUp 0.55s ease 0.33s both; }
-  .anim-6 { animation: fadeUp 0.55s ease 0.40s both; }
-  .anim-7 { animation: fadeUp 0.55s ease 0.47s both; }
+  .anim-1 {
+    animation: fadeUp 0.55s ease 0.05s both;
+  }
+  .anim-2 {
+    animation: fadeUp 0.55s ease 0.12s both;
+  }
+  .anim-3 {
+    animation: fadeUp 0.55s ease 0.19s both;
+  }
+  .anim-4 {
+    animation: fadeUp 0.55s ease 0.26s both;
+  }
+  .anim-5 {
+    animation: fadeUp 0.55s ease 0.33s both;
+  }
+  .anim-6 {
+    animation: fadeUp 0.55s ease 0.4s both;
+  }
+  .anim-7 {
+    animation: fadeUp 0.55s ease 0.47s both;
+  }
 
   @media (max-width: 1024px) {
-    .left-panel { display: none; }
+    .left-panel {
+      display: none;
+    }
   }
 </style>
 
 <script>
-import { fetchAPI } from '../../../lib/fetchApi'
-import { showAlert } from '../../../lib/showAlert'
-import { parseAuthError } from '../../../lib/authErrorMessages'
+  import { fetchAPI } from '../../../lib/fetchApi'
+  import { showAlert } from '../../../lib/showAlert'
+  import { parseAuthError } from '../../../lib/authErrorMessages'
 
   function createToggleHandler(inputId: string, iconId: string) {
     const input = document.getElementById(inputId) as HTMLInputElement
@@ -240,7 +407,10 @@ import { parseAuthError } from '../../../lib/authErrorMessages'
     button?.addEventListener('click', () => {
       const isPassword = input.type === 'password'
       input.type = isPassword ? 'text' : 'password'
-      button.setAttribute('aria-label', isPassword ? 'Ocultar contraseña' : 'Mostrar contraseña')
+      button.setAttribute(
+        'aria-label',
+        isPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'
+      )
       icon.innerHTML = isPassword
         ? `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
            <line x1="1" y1="1" x2="23" y2="23"/>`
@@ -270,8 +440,10 @@ import { parseAuthError } from '../../../lib/authErrorMessages'
 
   const passwordInput = document.getElementById('password') as HTMLInputElement
   const strengthBox = document.getElementById('strengthBox') as HTMLDivElement
-  const strengthLabel = document.getElementById('strengthLabel') as HTMLDivElement
-  const strengthBars = [1, 2, 3, 4].map(i => document.getElementById(`s${i}`))
+  const strengthLabel = document.getElementById(
+    'strengthLabel'
+  ) as HTMLDivElement
+  const strengthBars = [1, 2, 3, 4].map((i) => document.getElementById(`s${i}`))
 
   passwordInput?.addEventListener('input', () => {
     const value = passwordInput.value
@@ -282,21 +454,26 @@ import { parseAuthError } from '../../../lib/authErrorMessages'
     }
 
     strengthBox.classList.remove('hidden')
-    const score  = getStrengthScore(value)
+    const score = getStrengthScore(value)
     const config = STRENGTH_CONFIG[score - 1]
 
     strengthBars.forEach((bar: any, i) => {
-      bar.style.background = i < score ? config?.color ?? '#e2e8f0' : '#e2e8f0'
+      bar.style.background =
+        i < score ? (config?.color ?? '#e2e8f0') : '#e2e8f0'
     })
 
-    strengthLabel.textContent  = config?.label      ?? ''
-    strengthLabel.style.color  = config?.labelColor ?? '#94a3b8'
+    strengthLabel.textContent = config?.label ?? ''
+    strengthLabel.style.color = config?.labelColor ?? '#94a3b8'
 
     checkMatch()
   })
 
-  const confirmInput = document.getElementById('confirmPassword') as HTMLInputElement
-  const matchIndicator = document.getElementById('matchIndicator') as HTMLElement
+  const confirmInput = document.getElementById(
+    'confirmPassword'
+  ) as HTMLInputElement
+  const matchIndicator = document.getElementById(
+    'matchIndicator'
+  ) as HTMLElement
   const matchDot = document.getElementById('matchDot') as HTMLDivElement
   const matchText = document.getElementById('matchText') as HTMLDivElement
 
@@ -311,7 +488,9 @@ import { parseAuthError } from '../../../lib/authErrorMessages'
     const matches = passwordInput.value === value
 
     matchDot.style.background = matches ? '#6b9177' : '#f87171'
-    matchText.textContent = matches ? 'Las contraseñas coinciden' : 'No coinciden'
+    matchText.textContent = matches
+      ? 'Las contraseñas coinciden'
+      : 'No coinciden'
     matchText.style.color = matches ? '#6b9177' : '#f87171'
     confirmInput.classList.toggle('error', !matches)
   }
@@ -328,7 +507,7 @@ import { parseAuthError } from '../../../lib/authErrorMessages'
     return /\S+@\S+\.\S+/.test(value)
   }
 
-  form?.addEventListener('submit', async(e) => {
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault()
     let valid = true
 
@@ -350,29 +529,33 @@ import { parseAuthError } from '../../../lib/authErrorMessages'
     if (!termsCheck.checked) {
       showAlert({
         message: 'Debes aceptar los términos y condiciones.',
-        type: 'ERROR'
+        type: 'ERROR',
       })
       valid = false
     }
-    
+
     if (valid) {
       const email = emailInput.value.trim()
       const password = passwordInput.value.trim()
       const terms = termsCheck.checked
-      
+
       btnSubmit.disabled = true
       btnSubmit.textContent = 'Creando cuenta...'
 
       try {
-        const res = await fetchAPI('/api/auth/register', 'POST', { email, password, terms })
+        const res = await fetchAPI('/api/auth/register', 'POST', {
+          email,
+          password,
+          terms,
+        })
 
         if (!res.ok) {
           const errorData = await res.json()
-          console.log(errorData)
+          console.error(errorData)
         }
 
         const data = await res.json()
-        
+
         if (data) {
           window.location.href = '/login?t=account_created'
         }
@@ -382,10 +565,9 @@ import { parseAuthError } from '../../../lib/authErrorMessages'
         showAlert({
           message: 'Error',
           description: parseAuthError(error.code),
-          type: 'ERROR'
+          type: 'ERROR',
         })
       }
-
     }
   })
 
@@ -394,4 +576,3 @@ import { parseAuthError } from '../../../lib/authErrorMessages'
     console.log('Google OAuth — conectar provider')
   })
 </script>
-

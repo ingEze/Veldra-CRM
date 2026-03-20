@@ -3,11 +3,9 @@ const email = Astro.locals.user?.email
 const initials = email?.slice(0, 2).toUpperCase()
 ---
 
-<aside
-  id="sidebar"
-  class="w-55 shrink-0 flex flex-col h-full bg-white border-r border-[#eef2f7]"
->
-  <div class="border-b border-[#eef2f7] flex justify-center items-center">
+<aside id="sidebar" class="sidebar w-55 shrink-0 flex flex-col h-full">
+  <!-- Logo -->
+  <div class="sidebar-header flex justify-center items-center">
     <div class="flex items-center gap-3 mx-1 my-[19.5px]">
       <div
         class="h-auto w-6/12 rounded-[9px] overflow-hidden shrink-0 flex items-center justify-center bg-transparent ml-4"
@@ -15,19 +13,17 @@ const initials = email?.slice(0, 2).toUpperCase()
         <img
           src="/logo.png"
           alt="Veldra logo"
-          class="w-full h-full object-contain brightness-0"
+          class="w-full h-full object-contain"
+          style="filter: brightness(0) invert(1) opacity(0.85);"
           loading="eager"
         />
       </div>
     </div>
   </div>
 
+  <!-- Nav -->
   <nav class="flex-1 px-3 py-4 flex flex-col gap-0.5 overflow-y-auto">
-    <p
-      class="text-[10.5px] font-semibold text-slate-400 uppercase tracking-widest px-3 mb-2"
-    >
-      Workspace
-    </p>
+    <p class="nav-section-label">Workspace</p>
 
     <a class="nav-item active" data-section="clients">
       <svg
@@ -100,12 +96,8 @@ const initials = email?.slice(0, 2).toUpperCase()
       Tasks
     </a>
 
-    <div class="my-3 border-t border-[#eef2f7]"></div>
-    <p
-      class="text-[10.5px] font-semibold text-slate-400 uppercase tracking-widest px-3 mb-2"
-    >
-      Account
-    </p>
+    <div class="nav-divider"></div>
+    <p class="nav-section-label">Account</p>
 
     <a class="nav-item" data-section="settings">
       <svg
@@ -125,24 +117,21 @@ const initials = email?.slice(0, 2).toUpperCase()
       </svg>
       Settings
     </a>
+
   </nav>
 
-  <!-- User -->
-  <div class="px-4 py-4 border-t border-[#eef2f7]">
+  <!-- User footer -->
+  <div class="user-footer">
     <div class="flex items-center gap-2.5">
-      <div
-        class="w-7 h-7 rounded-full bg-linear-to-br from-[#6b9177] to-[#537860] flex items-center justify-center shrink-0"
-      >
-        <span class="text-[11px] text-white font-semibold">{initials}</span>
+      <div class="user-avatar shrink-0">
+        <span class="text-[11px] font-semibold">{initials}</span>
       </div>
       <div class="flex-1 min-w-0">
-        <p class="text-[11px] text-slate-400 truncate">{email}</p>
+        <p class="text-[11px] truncate" style="color: var(--text-muted);">
+          {email}
+        </p>
       </div>
-      <button
-        id="logout"
-        class="text-slate-400 hover:text-slate-600 transition-colors p-0.5"
-        title="Cerrar sesión"
-      >
+      <button id="logout" class="logout-btn" title="Cerrar sesión">
         <svg
           width="13"
           height="13"
@@ -163,6 +152,30 @@ const initials = email?.slice(0, 2).toUpperCase()
 </aside>
 
 <style>
+  .sidebar {
+    background-color: var(--bg-surface);
+    border-right: 1px solid var(--border-subtle);
+  }
+
+  .sidebar-header {
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .nav-section-label {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0 12px;
+    margin-bottom: 6px;
+  }
+
+  .nav-divider {
+    margin: 10px 0;
+    border-top: 1px solid var(--border-subtle);
+  }
+
   .nav-item {
     display: flex;
     align-items: center;
@@ -171,22 +184,65 @@ const initials = email?.slice(0, 2).toUpperCase()
     border-radius: 8px;
     font-size: 13.5px;
     font-weight: 400;
-    color: #64748b;
+    color: var(--text-secondary);
     cursor: pointer;
     transition: all 0.18s ease;
     text-decoration: none;
   }
   .nav-item:hover {
-    background: rgba(107, 145, 119, 0.08);
-    color: #334155;
+    background: var(--bg-hover);
+    color: var(--text-primary);
+  }
+  .nav-item svg {
+    stroke: var(--text-muted);
+    transition: stroke 0.18s ease;
+  }
+  .nav-item:hover svg {
+    stroke: var(--text-secondary);
   }
   .nav-item.active {
-    background: #1e293b;
-    color: #f8fafc;
+    background: var(--bg-overlay);
+    color: var(--text-primary);
     font-weight: 500;
+    box-shadow: inset 0 0 0 1px var(--border-default);
   }
   .nav-item.active svg {
-    stroke: #84a98c;
+    stroke: var(--accent);
+  }
+
+  .user-footer {
+    padding: 16px;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .user-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #3d6b50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .logout-btn {
+    color: var(--text-muted);
+    padding: 2px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition:
+      color 0.15s,
+      background 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logout-btn:hover {
+    color: var(--text-secondary);
+    background: var(--bg-hover);
   }
 
   @media (max-width: 768px) {
@@ -207,7 +263,3 @@ const initials = email?.slice(0, 2).toUpperCase()
     }
   }
 </style>
-
-<script>
-  import '../../scripts/dashboard/sidebar'
-</script>

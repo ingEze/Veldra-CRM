@@ -5,7 +5,7 @@ declare namespace App {
     supabase: import('@supabase/supabase-js').SupabaseClient
     user?: {
       id: string,
-      email: string
+      email?: string
     }
   }
 }

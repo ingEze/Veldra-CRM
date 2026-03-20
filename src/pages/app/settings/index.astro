@@ -1,0 +1,37 @@
+---
+import Layout from '../../../layouts/Layout.astro'
+import Sidebar from '../../../components/dashboard/Sidebar.astro'
+---
+
+<Layout title="Veldra — Settings">
+  <section class="flex h-screen overflow-hidden">
+    <Sidebar />
+
+    <div
+      class="sidebar-overlay hidden fixed inset-0 bg-slate-900/40 z-40"
+      id="sidebarOverlay"
+    >
+    </div>
+
+    <main
+      class="flex-1 overflow-y-auto p-6 bg-slate-50 dark:bg-slate-900 transition-colors duration-300"
+    >
+      <h1
+        class="text-3xl font-semibold mb-2 text-slate-800 dark:text-slate-100"
+      >
+        Settings
+      </h1>
+      <p class="text-slate-500 dark:text-slate-300 mb-4">
+        Aquí puedes ajustar la configuración de tu cuenta y modo de color.
+      </p>
+      <div
+        class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4"
+      >
+        <p class="text-slate-600 dark:text-slate-300">
+          Cambia entre modo claro y oscuro usando el botón en la parte superior
+          derecha.
+        </p>
+      </div>
+    </main>
+  </section>
+</Layout>

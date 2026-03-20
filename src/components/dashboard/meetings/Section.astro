@@ -1,0 +1,238 @@
+---
+
+---
+
+<div id="meetingsSection" class="hidden flex-col flex-1 h-full">
+  <!-- Empty state -->
+  <div
+    id="meetingsEmpty"
+    class="flex-1 items-center justify-center min-h-full hidden"
+  >
+    <div class="flex flex-col items-center text-center max-w-xs gap-4">
+      <div
+        class="w-14 h-14 rounded-2xl bg-[#f0f4f1] flex items-center justify-center"
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#6b9177"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+          <path d="M16 2v4M8 2v4M3 10h18"></path>
+          <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"></path>
+        </svg>
+      </div>
+      <div>
+        <p class="text-slate-800 font-semibold text-[15px]">No meetings yet</p>
+        <p class="text-slate-400 text-[13px] mt-1 leading-relaxed">
+          Schedule your first meeting and keep track of your conversations.
+        </p>
+      </div>
+      <button
+        id="btnEmptyAddMeeting"
+        class="flex items-center gap-1.5 bg-slate-800 text-[#fdfcf8] text-[13px] font-medium px-4 py-2 rounded-lg transition-all duration-200 hover:bg-slate-900 hover:-translate-y-px hover:shadow-md active:translate-y-0"
+      >
+        <svg
+          width="13"
+          height="13"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+        Schedule meeting
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading skeleton -->
+  <div
+    id="meetingsLoading"
+    class="hidden grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"
+  >
+    {
+      Array.from({ length: 8 }).map(() => (
+        <div class="bg-white rounded-xl border border-slate-200 overflow-hidden flex flex-col animate-pulse">
+          <div class="px-3.5 py-3 border-b border-slate-100 flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-full bg-slate-100 shrink-0" />
+            <div class="h-3 bg-slate-100 rounded flex-1" />
+            <div class="h-5 w-16 bg-slate-100 rounded-full shrink-0" />
+          </div>
+          <div class="px-3.5 py-3 flex flex-col gap-2 flex-1">
+            <div class="h-3.5 bg-slate-100 rounded w-3/4" />
+            <div class="h-3 bg-slate-100 rounded w-1/2" />
+            <div class="h-3 bg-slate-100 rounded w-1/3" />
+          </div>
+          <div class="px-3.5 py-2.5 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+            <div class="h-3 bg-slate-100 rounded w-24" />
+            <div class="h-3 bg-slate-100 rounded w-12" />
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <div
+    id="meetingsList"
+    class="hidden grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"
+  >
+  </div>
+</div>
+
+<!-- ── Delete Confirmation Modal ─────────────────────────────────────────── -->
+<div
+  id="deleteMeetingOverlay"
+  class="fixed inset-0 z-50 hidden items-center justify-center"
+  style="background: rgba(15,23,42,0.35); backdrop-filter: blur(3px);"
+>
+  <div
+    id="deleteMeetingModal"
+    class="bg-white rounded-2xl shadow-2xl w-full max-w-sm mx-4 overflow-hidden"
+    style="transform: scale(0.95); opacity: 0; transition: transform 0.18s cubic-bezier(.34,1.56,.64,1), opacity 0.15s ease;"
+  >
+    <!-- Top accent bar -->
+    <div class="h-1 w-full bg-linear-to-r from-red-400 to-red-500"></div>
+
+    <div class="px-6 py-5">
+      <!-- Icon + heading -->
+      <div class="flex items-start gap-4">
+        <div
+          class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center shrink-0 mt-0.5"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#ef4444"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
+            <path d="M10 11v6M14 11v6"></path>
+            <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path>
+          </svg>
+        </div>
+        <div>
+          <p class="text-slate-800 font-semibold text-[15px] leading-snug">
+            Delete meeting?
+          </p>
+          <p class="text-slate-400 text-[13px] mt-1 leading-relaxed">
+            This action cannot be undone. The meeting and all its data will be
+            permanently removed.
+          </p>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex items-center justify-end gap-2.5 mt-5">
+        <button
+          id="deleteMeetingCancel"
+          class="px-4 py-2 text-[13px] font-medium text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors duration-150"
+        >
+          Cancel
+        </button>
+        <button
+          id="deleteMeetingConfirm"
+          class="px-4 py-2 text-[13px] font-medium text-white bg-red-500 hover:bg-red-600 active:bg-red-700 rounded-lg transition-colors duration-150 flex items-center gap-1.5"
+        >
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
+            <path d="M10 11v6M14 11v6"></path>
+            <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path>
+          </svg>
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { fetchAPI } from '../../../lib/fetchApi'
+
+  const overlay = document.getElementById('deleteMeetingOverlay') as HTMLElement
+  const modal = document.getElementById('deleteMeetingModal') as HTMLElement
+  const cancelBtn = document.getElementById(
+    'deleteMeetingCancel'
+  ) as HTMLButtonElement
+  const confirmBtn = document.getElementById(
+    'deleteMeetingConfirm'
+  ) as HTMLButtonElement
+
+  let pendingDeleteId: string | null = null
+
+  function openDeleteModal(id: string) {
+    pendingDeleteId = id
+    overlay.classList.remove('hidden')
+    overlay.classList.add('flex')
+    requestAnimationFrame(() => {
+      modal.style.transform = 'scale(1)'
+      modal.style.opacity = '1'
+    })
+  }
+
+  function closeDeleteModal() {
+    modal.style.transform = 'scale(0.95)'
+    modal.style.opacity = '0'
+    setTimeout(() => {
+      overlay.classList.remove('flex')
+      overlay.classList.add('hidden')
+      pendingDeleteId = null
+    }, 170)
+  }
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeDeleteModal()
+  })
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !overlay.classList.contains('hidden')) {
+      closeDeleteModal()
+    }
+  })
+
+  cancelBtn.addEventListener('click', closeDeleteModal)
+
+  confirmBtn.addEventListener('click', async () => {
+    if (!pendingDeleteId) return
+    const id = pendingDeleteId
+    closeDeleteModal()
+    try {
+      const res = await fetchAPI(`/api/meetings/${id}`, 'DELETE')
+
+      if (!res.ok) {
+        const errMsg = await res.json()
+        console.error(errMsg)
+        return
+      }
+
+      ;(window as any).loadMeetings?.()
+    } catch (err) {
+      console.error('Delete meeting failed:', err)
+    }
+  })
+  ;(window as any).openDeleteMeetingModal = openDeleteModal
+</script>

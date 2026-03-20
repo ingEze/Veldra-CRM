@@ -16,24 +16,9 @@ export const POST: APIRoute = async({ locals, request }) => {
             )
         }
 
-        const { data: { user }, error: userError } = await locals.supabase.auth.getUser()
-
-        if(userError || !user) {
-            return new Response(
-                JSON.stringify({
-                    success: false,
-                    error: 'Unauthorized',
-                }),
-                { status: 401 }
-            )
-        }
-
         const { data, error } = await locals.supabase
             .from('clients')
-            .insert({
-                ...validation.data,
-                user_id: user.id
-            })
+            .insert(validation.data)
             .select()
             .single()
 

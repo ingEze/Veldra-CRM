@@ -23,14 +23,13 @@ const icons: Record<string, string> = {
 }
 ---
 
-<div class="flex flex-col items-center justify-center gap-5 select-none">
+<div
+  class="empty-state flex flex-col items-center justify-center gap-5 select-none"
+>
   <div class="relative flex items-center justify-center">
+    <div class="empty-glow absolute w-24 h-24 rounded-full blur-2xl"></div>
     <div
-      class="absolute w-24 h-24 rounded-full bg-slate-100 opacity-60 blur-xl"
-    >
-    </div>
-    <div
-      class="relative w-16 h-16 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-center"
+      class="empty-icon-box relative w-16 h-16 rounded-2xl flex items-center justify-center"
     >
       <svg
         width="28"
@@ -41,7 +40,7 @@ const icons: Record<string, string> = {
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
-        class="text-slate-400"
+        class="empty-icon"
       >
         <Fragment set:html={icons[icon]} />
       </svg>
@@ -49,16 +48,16 @@ const icons: Record<string, string> = {
   </div>
 
   <div class="text-center space-y-1.5">
-    <h3 class="text-slate-700 font-semibold text-[15px]">{title}</h3>
-    <p class="text-slate-400 text-[13px] max-w-55 leading-relaxed">
-      {description}
-    </p>
+    <h3 class="empty-title text-[15px] font-semibold">{title}</h3>
+    <p class="empty-desc text-[13px] max-w-55 leading-relaxed">{description}</p>
   </div>
 
-  <button
-    id={buttonId}
-    class="flex items-center gap-1.5 bg-slate-800 text-[#fdfcf8] text-[13px] font-medium px-4 py-2 rounded-lg transition-all duration-200 hover:bg-slate-900 hover:-translate-y-px hover:shadow-md active:translate-y-0"
-  >
+<button
+id={buttonId}
+class="btn-empty flex items-center gap-1.5 text-[13px] font-medium px-4 py-2 rounded-lg transition-all duration-200"
+
+>
+
     <svg
       width="12"
       height="12"
@@ -73,5 +72,49 @@ const icons: Record<string, string> = {
       <line x1="5" y1="12" x2="19" y2="12"></line>
     </svg>
     {buttonLabel}
+
   </button>
 </div>
+
+<style>
+  .empty-glow {
+    background: radial-gradient(
+      circle,
+      rgba(107, 145, 119, 0.15) 0%,
+      transparent 70%
+    );
+  }
+
+  .empty-icon-box {
+    background-color: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .empty-icon {
+    color: var(--text-muted);
+  }
+
+  .empty-title {
+    color: var(--text-secondary);
+  }
+
+  .empty-desc {
+    color: var(--text-muted);
+  }
+
+  .btn-empty {
+    background-color: var(--bg-elevated);
+    color: var(--text-primary);
+    border: 1px solid var(--border-strong);
+    cursor: pointer;
+  }
+  .btn-empty:hover {
+    background-color: var(--bg-overlay);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  }
+  .btn-empty:active {
+    transform: translateY(0);
+  }
+</style>

@@ -5,15 +5,12 @@ import MeetingsSection from '../../components/dashboard/meetings/Section.astro'
 import MeetingModal from '../../components/dashboard/meetings/Modal.astro'
 ---
 
-<main class="flex-1 flex flex-col min-w-0 overflow-hidden">
+<main class="main-content flex-1 flex flex-col min-w-0 overflow-hidden">
   <header
-    class="shrink-0 flex items-center justify-between px-6 py-4 bg-[#fdfcf8] border-b border-[#eef2f7]"
+    class="main-header shrink-0 flex items-center justify-between px-6 py-4"
   >
     <div class="flex items-center gap-3">
-      <button
-        id="menuBtn"
-        class="md:hidden text-slate-500 hover:text-slate-700 mr-1"
-      >
+      <button id="menuBtn" class="menu-btn md:hidden mr-1">
         <svg
           width="18"
           height="18"
@@ -30,28 +27,17 @@ import MeetingModal from '../../components/dashboard/meetings/Modal.astro'
         </svg>
       </button>
       <div>
-        <h1
-          id="pageTitle"
-          class="font-serif text-[22px] text-slate-800 leading-tight tracking-tight"
-        >
-          Clients
-        </h1>
-        <p id="pageSubtitle" class="text-[12px] text-slate-400 font-normal">
+        <h1 id="pageTitle" class="font-serif page-title">Clients</h1>
+        <p id="pageSubtitle" class="page-subtitle">
           Manage your client relationships
         </p>
       </div>
     </div>
+
     <div class="flex items-center gap-2">
       <button
-        id="themeToggle"
-        class="text-slate-500 hover:text-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 transition-all duration-200"
-        aria-label="Toggle theme"
-      >
-        🌙 Dark
-      </button>
-      <button
         id="btnAddClient"
-        class="flex items-center gap-1.5 bg-slate-800 text-[#fdfcf8] text-[13px] font-medium px-3.5 py-2 rounded-lg transition-all duration-200 hover:bg-slate-900 hover:-translate-y-px hover:shadow-md active:translate-y-0"
+        class="btn-primary flex items-center gap-1.5 text-[13px] font-medium px-3.5 py-2 rounded-lg transition-all duration-200"
       >
         <svg
           width="13"
@@ -71,7 +57,7 @@ import MeetingModal from '../../components/dashboard/meetings/Modal.astro'
 
       <button
         id="btnAddMeeting"
-        class="hidden items-center gap-1.5 bg-slate-800 text-[#fdfcf8] text-[13px] font-medium px-3.5 py-2 rounded-lg transition-all duration-200 hover:bg-slate-900 hover:-translate-y-px hover:shadow-md active:translate-y-0"
+        class="btn-primary hidden items-center gap-1.5 text-[13px] font-medium px-3.5 py-2 rounded-lg transition-all duration-200"
       >
         <svg
           width="13"
@@ -89,9 +75,13 @@ import MeetingModal from '../../components/dashboard/meetings/Modal.astro'
         <span>Schedule meeting</span>
       </button>
     </div>
+
   </header>
 
-  <div class="flex-1 overflow-y-auto p-4 sm:p-6 bg-[#fdfcf8] flex flex-col">
+  <div
+    class="flex-1 overflow-y-auto p-4 sm:p-6 flex flex-col"
+    style="background-color: var(--bg-base);"
+  >
     <MeetingsSection />
 
     <div
@@ -115,14 +105,75 @@ import MeetingModal from '../../components/dashboard/meetings/Modal.astro'
       </div>
       <div id="pagination" class="mt-10"></div>
     </div>
+
   </div>
 
   <Modal />
   <MeetingModal />
 </main>
 
+<style>
+  .main-content {
+    background-color: var(--bg-base);
+  }
+
+  .main-header {
+    background-color: var(--bg-surface);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .page-title {
+    font-size: 22px;
+    color: var(--text-primary);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .page-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-top: 1px;
+  }
+
+  .menu-btn {
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 6px;
+    transition:
+      color 0.15s,
+      background 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .menu-btn:hover {
+    color: var(--text-primary);
+    background: var(--bg-hover);
+  }
+
+  .btn-primary {
+    background-color: var(--bg-elevated);
+    color: var(--text-primary);
+    border: 1px solid var(--border-strong);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .btn-primary:hover {
+    background-color: var(--bg-overlay);
+    border-color: var(--border-strong);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+</style>
+
 <script>
   import '../../scripts/meetings'
   import '../../scripts/main'
-  import '../../scripts/theme'
 </script>
